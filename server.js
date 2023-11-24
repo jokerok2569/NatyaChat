@@ -7,11 +7,19 @@ const indexHtmlFile = fs.readFileSync(pathToIndex);
 
 const server = http.createServer((req, res) => {
 
-    if(req.url === '/') {
-      return res.end(indexHtmlFile);
-    }
+    // if(req.url === '/') {
+    //   return res.end(indexHtmlFile);
+    // }
 
-    res.statusCode = 404;
+    // res.statusCode = 404;
+    // return res.end('Error 404');
+
+    switch(req.url) {
+        case '/': return res.end(indexHtmlFile);
+        case '/script.js': return res.end(scriptFile);
+        case '/style.css': return res.end(styleFile);
+    }
+    res.statusCode == 404;
     return res.end('Error 404');
 });
 
